@@ -10,7 +10,7 @@ public class DreamType {
     @Column(name = "id")
     private long id;
     @Column(name = "name")
-    private long name;
+    private String name;
     @Column(name = "weight")
     private int weight;
     public long getId() {
@@ -21,11 +21,11 @@ public class DreamType {
         this.id = id;
     }
 
-    public long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
