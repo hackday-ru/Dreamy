@@ -1,12 +1,16 @@
 package org.kedzo.dreamy.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by woodman on 16.04.16.
  */
+@Entity
+@Table(name = "tags")
 public class Tag implements RepositoryEntity {
     @Id
     @GeneratedValue

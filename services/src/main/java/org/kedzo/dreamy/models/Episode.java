@@ -1,13 +1,17 @@
 package org.kedzo.dreamy.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
  */
+@Entity
+@Table(name = "episodes")
 public class Episode implements RepositoryEntity {
     @Id
     @GeneratedValue

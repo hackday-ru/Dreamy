@@ -24,6 +24,7 @@ public class User implements RepositoryEntity {
     private String username;
     @Column(name = "picture")
     private byte[] picture;
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private Date birthday;
     @Column(name = "latitude")
