@@ -21,7 +21,7 @@ public class Dream implements RepositoryEntity {
     private String description;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Episode> episodes;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<DreamType> types;
 
     public long getId() {

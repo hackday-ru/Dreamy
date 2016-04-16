@@ -43,22 +43,20 @@ public class FillDBUtil {
         for (int t = 0; t < entry; t++) {
             User user = generator.generateUser();
             Set<Dream> dreams = new HashSet<>();
-            for (int i = 0; i < entry; i++) {
+            for (int i = 0; i < entry * 3; i++) {
                 Dream dream = generator.generateDream();
                 dream.setDate(new Date(new Date().getTime() - TimeUnit.DAYS.toMillis(i)));
                 Set<Episode> episodes = new HashSet<>();
-                for (int j = 0; j < entry; j++) {
+                for (int j = 0; j < 2; j++) {
                     Episode episode = generator.generateEpisode(i);
-                    episode.setTags(getTags());
                     episodes.add(episode);
                 }
                 dream.setEpisodes(episodes);
-                dream.setHappy(getDreamType());
                 dreams.add(dream);
             }
             user.setDreams(dreams);
             EmotionalView emotionalView = generator.generateEmotion();
-            emotionalView.setHappy(getHappy(dreams));
+//            emotionalView.setHappy(getHappy(dreams));
             emotionalView.setOriginally(getOriginally(dreams));
             user.setEmotionalViews(emotionalView);
             users.add(user);

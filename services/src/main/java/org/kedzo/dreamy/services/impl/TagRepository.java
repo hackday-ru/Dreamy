@@ -45,10 +45,10 @@ public class TagRepository implements CrudRepository<Tag> {
     public Set<Tag> getRandTags() {
         Random random = new Random();
         Query query = entityManager.instance().createNativeQuery(
-                "SELECT * FROM tags ORDER BY rand() LIMIT " + random.nextInt(10),
+                "SELECT * FROM tags ORDER BY rand() LIMIT " + random.nextInt(4),
                 Tag.class
         );
-        List<Tag> resultList = (List<Tag>) query.getResultList();
+        List<Tag> resultList = ((List<Tag>) query.getResultList());
         return new HashSet<>(resultList);
     }
     

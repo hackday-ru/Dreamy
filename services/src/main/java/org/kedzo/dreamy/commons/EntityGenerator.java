@@ -35,7 +35,6 @@ public class EntityGenerator {
         view.setFriendly(generateFloat(0f, 100f));
         view.setUnstable(generateFloat(0f, 100f));
         view.setOriginally(generateFloat(0f, 100f));
-        view.setHappy(generateFloat(0f, 100f));
         return view;
     }
 

@@ -1,10 +1,6 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by woodman on 16.04.16.
@@ -18,8 +14,6 @@ public class EmotionalView {
     private long id;
     @Column(name = "common_t")
     private double common;
-    @Column(name = "communicative_t")
-    private double communicative;
     @Column(name = "happy_t")
     private double happy;
     @Column(name = "brightly_t")
@@ -30,8 +24,6 @@ public class EmotionalView {
     private double unstable;
     @Column(name = "originally_t")
     private double originally;
-    @Column(name = "nformative_t")
-    private double informative;
 
     public long getId() {
         return id;
@@ -47,14 +39,6 @@ public class EmotionalView {
 
     public void setCommon(double common) {
         this.common = common;
-    }
-
-    public double getCommunicative() {
-        return communicative;
-    }
-
-    public void setCommunicative(double communicative) {
-        this.communicative = communicative;
     }
 
     public double getHappy() {
@@ -95,13 +79,5 @@ public class EmotionalView {
 
     public void setOriginally(double originally) {
         this.originally = originally;
-    }
-
-    public double getInformative() {
-        return informative;
-    }
-
-    public void setInformative(double informative) {
-        this.informative = informative;
     }
 }
