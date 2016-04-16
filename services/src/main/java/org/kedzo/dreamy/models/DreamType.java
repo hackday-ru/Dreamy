@@ -1,28 +1,33 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by woodman on 16.04.16.
  */
-public enum DreamType {
-    DREAM("мечта"),
-    NIGHTMARE("кошмар"),
-    CONSCIOUSNESS("осознаный"),
-    PREDICTION("веший"),
-    EROTICA("эротичный"),
-    CYCLE("повторяюшийся"),
-    CREATIVE("творческий"),
-    LETHARGY("летаргичкский");
+public class DreamType {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long id;
+    @Column(name = "name")
+    private long name;
 
-    private final String text;
-
-    private DreamType(final String text) {
-        this.text = text;
+    public long getId() {
+        return id;
     }
 
-
-    @Override
-    public String toString() {
-        return text;
+    private void setId(long id) {
+        this.id = id;
     }
 
+    public long getName() {
+        return name;
+    }
+
+    public void setName(long name) {
+        this.name = name;
+    }
 }
