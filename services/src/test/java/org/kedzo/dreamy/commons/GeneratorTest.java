@@ -65,7 +65,7 @@ public class GeneratorTest {
 
     @Test
     public void generateEpisodeTest() throws Exception {
-        Episode episode = generator.generateEpisode();
+        Episode episode = generator.generateEpisode(0);
         Assert.notNull(episode);
         Assert.notNull(episode.getNote());
         Assert.notNull(episode.getOrder());

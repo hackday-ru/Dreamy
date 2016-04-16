@@ -36,7 +36,7 @@ public class User implements RepositoryEntity {
     private Boolean individual;
     @OneToOne(fetch = FetchType.LAZY)
     private Blog blog;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Dream> dreams;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<User> friends;

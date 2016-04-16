@@ -40,11 +40,11 @@ public class DreamRepositoryTest {
     @Before
     public void before() throws Exception {
         dream1 = generator.generateDream();
-        dream1.setEpisodes(Collections.singleton(generator.generateEpisode()));
+        dream1.setEpisodes(Collections.singleton(generator.generateEpisode(1)));
         dream2 = generator.generateDream();
-        dream2.setEpisodes(Collections.singleton(generator.generateEpisode()));
+        dream2.setEpisodes(Collections.singleton(generator.generateEpisode(1)));
         dream3 = generator.generateDream();
-        dream3.setEpisodes(Collections.singleton(generator.generateEpisode()));
+        dream3.setEpisodes(Collections.singleton(generator.generateEpisode(1)));
     }
 
     @After

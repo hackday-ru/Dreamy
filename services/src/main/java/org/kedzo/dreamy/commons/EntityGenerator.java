@@ -23,7 +23,7 @@ public class EntityGenerator {
         user.setBirthday(new Date());
         user.setPicture(generateString(50));
         user.setLng(generateFloat(180, -180));
-        user.setLat(generateFloat(180, -180));
+        user.setLat(generateFloat(90, -90));
         user.setIndividual(rand.nextBoolean());
         return user;
     }
@@ -42,11 +42,11 @@ public class EntityGenerator {
         return tag;
     }
 
-    public Episode generateEpisode() {
+    public Episode generateEpisode(int order) {
         Episode episode = new Episode();
         episode.setNote(generateString(100));
         episode.setPicture(generateString(50));
-        episode.setOrder(1);
+        episode.setOrder(order);
         return episode;
     }
 
