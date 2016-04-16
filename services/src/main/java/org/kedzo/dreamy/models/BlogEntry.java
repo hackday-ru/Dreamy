@@ -1,17 +1,30 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
  */
+@Entity
+@Table(name = "blog_enties")
 public class BlogEntry implements RepositoryEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
-    private Blog blog;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date")
     private Date date;
+    @Column(name = "title")
     private String title;
+    @Column(name = "text")
     private String text;
+    @OneToOne(fetch = FetchType.LAZY)
     private Dream dream;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<BlogComment> blogCommentses;
 
     public long getId() {
         return id;
@@ -19,14 +32,6 @@ public class BlogEntry implements RepositoryEntity {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
     }
 
     public Date getDate() {
@@ -59,5 +64,13 @@ public class BlogEntry implements RepositoryEntity {
 
     public void setDream(Dream dream) {
         this.dream = dream;
+    }
+
+    public Set<BlogComment> getBlogCommentses() {
+        return blogCommentses;
+    }
+
+    public void setBlogCommentses(Set<BlogComment> blogCommentses) {
+        this.blogCommentses = blogCommentses;
     }
 }

@@ -1,12 +1,20 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.*;
+
 /**
  * Created by woodman on 16.04.16.
  */
-public class BlogComments implements RepositoryEntity {
+@Entity
+@Table(name = "blog_comments")
+public class BlogComment implements RepositoryEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
-    private BlogEntry blogEntry;
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
+    @Column(name = "comment")
     private String comment;
 
     public long getId() {
@@ -15,14 +23,6 @@ public class BlogComments implements RepositoryEntity {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public BlogEntry getBlogEntry() {
-        return blogEntry;
-    }
-
-    public void setBlogEntry(BlogEntry blogEntry) {
-        this.blogEntry = blogEntry;
     }
 
     public User getUser() {
