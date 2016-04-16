@@ -1,21 +1,43 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by woodman on 16.04.16.
  */
+@Entity
+@Table(name = "users")
 public class User implements RepositoryEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+    @Column(name = "login")
     private String login;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "username")
     private String username;
+    @Column(name = "picture")
     private byte[] picture;
+    @Column(name = "birthday")
     private Date birthday;
+    @Column(name = "latitude")
     private float lat;
+    @Column(name = "longitude")
     private float longitut;
+    @Column(name = "is_private")
     private Boolean individual;
+    @Column(name = "blog_id")
     private Blog blog;
 
     public long getId() {
