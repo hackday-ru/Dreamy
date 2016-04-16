@@ -3,6 +3,7 @@ package org.kedzo.dreamy.models;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.print.attribute.standard.MediaSize;
 
 /**
  * Created by woodman on 16.04.16.
@@ -14,7 +15,8 @@ public class DreamType {
     private long id;
     @Column(name = "name")
     private long name;
-
+    @Column(name = "mass")
+    private int mass;
     public long getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class DreamType {
 
     public void setName(long name) {
         this.name = name;
+    }
+
+    public int getMass() {
+        return mass;
+    }
+
+    public void setMass(int mass) {
+        this.mass = mass;
     }
 }
