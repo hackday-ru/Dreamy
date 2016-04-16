@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "dream_type")
-public class DreamType {
+public class DreamType implements RepositoryEntity {
     @Id
     @GeneratedValue
     @Column(name = "id")

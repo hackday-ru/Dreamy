@@ -3,10 +3,15 @@ package org.kedzo.dreamy.services.impl;
 import org.kedzo.dreamy.models.DreamType;
 import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-/**
- * Created by woodman on 16.04.16.
- */
+import javax.persistence.Query;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+@Repository(value = "dreamTypeRepository")
 public class DreamTypeRepository implements CrudRepository<DreamType> {
 
 
@@ -39,4 +44,13 @@ public class DreamTypeRepository implements CrudRepository<DreamType> {
         return save(entity);
     }
 
+    public Set<DreamType> getRandDreamType() {
+        Random random = new Random();
+        Query query = entityManager.instance().createNativeQuery(
+                "SELECT * FROM dream_type ORDER BY rand() LIMIT " + random.nextInt(4),
+                DreamType.class
+        );
+        List<DreamType> resultList = ((List<DreamType>) query.getResultList());
+        return new HashSet<>(resultList);
+    }
 }

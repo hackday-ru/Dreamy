@@ -2,17 +2,15 @@ package org.kedzo.dreamy.commons;
 
 import org.kedzo.dreamy.models.DreamType;
 import org.kedzo.dreamy.services.impl.DreamTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by woodman on 16.04.16.
- */
+import javax.annotation.Resource;
+
 @Component
 public class UtilDreamType {
 
-    @Autowired
+    @Resource(name = "dreamTypeRepository")
     private DreamTypeRepository dreamTypeRepository;
 
     public static void main(String[] args) {
@@ -20,7 +18,7 @@ public class UtilDreamType {
         utilDreamType.generate();
     }
 
-    public void generate() {
+    private void generate() {
         addDreamTypeDb("мечта", 5);
         addDreamTypeDb("кошмар", -5);
         addDreamTypeDb("осознаный", 3);

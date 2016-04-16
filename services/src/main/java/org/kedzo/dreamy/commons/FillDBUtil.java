@@ -2,7 +2,7 @@ package org.kedzo.dreamy.commons;
 
 import org.kedzo.dreamy.models.*;
 import org.kedzo.dreamy.services.impl.BlogRepository;
-import org.kedzo.dreamy.services.impl.DreamRepository;
+import org.kedzo.dreamy.services.impl.DreamTypeRepository;
 import org.kedzo.dreamy.services.impl.TagRepository;
 import org.kedzo.dreamy.services.impl.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class FillDBUtil {
     @Resource(name = "userRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "dreamRepository")
-    private DreamRepository dreamRepository;
+    @Resource(name = "dreamTypeRepository")
+    private DreamTypeRepository dreamTypeRepository;
 
     @Resource(name = "tagRepository")
     private TagRepository tagRepository;
@@ -37,7 +37,7 @@ public class FillDBUtil {
         fillDBUtil.fillDB(10);
     }
 
-    public void fillDB(int entry) {
+    private void fillDB(int entry) {
         System.out.println("Start fill db");
         Set<User> users = new HashSet<>();
         for (int t = 0; t < entry; t++) {
@@ -53,6 +53,7 @@ public class FillDBUtil {
                     episodes.add(episode);
                 }
                 dream.setEpisodes(episodes);
+                dream.setHappy(getDreamType());
                 dreams.add(dream);
             }
             user.setDreams(dreams);
@@ -71,6 +72,10 @@ public class FillDBUtil {
 
     private Set<Tag> getTags() {
         return tagRepository.getRandTags();
+    }
+
+    private Set<DreamType> getDreamType() {
+        return dreamTypeRepository.getRandDreamType();
     }
 
     private double getHappy(Set<Dream> dreams) {
