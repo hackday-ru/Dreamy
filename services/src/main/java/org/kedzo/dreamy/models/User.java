@@ -40,6 +40,9 @@ public class User implements RepositoryEntity {
     private Set<Dream> dreams;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<User> friends;
+    @OneToOne
+    private EmotionalView emotionalViews;
+
 
     public long getId() {
         return id;
@@ -143,6 +146,14 @@ public class User implements RepositoryEntity {
 
     public void setFriends(Set<User> friends) {
         this.friends = friends;
+    }
+
+    public EmotionalView getEmotionalViews() {
+        return emotionalViews;
+    }
+
+    public void setEmotionalViews(EmotionalView emotionalViews) {
+        this.emotionalViews = emotionalViews;
     }
 }
 

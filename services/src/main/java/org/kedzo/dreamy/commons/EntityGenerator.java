@@ -28,6 +28,17 @@ public class EntityGenerator {
         return user;
     }
 
+    public EmotionalView generateEmotion() {
+        EmotionalView view = new EmotionalView();
+        view.setBrightly(generateFloat(0f, 100f));
+        view.setCommon(generateFloat(0f, 100f));
+        view.setFriendly(generateFloat(0f, 100f));
+        view.setUnstable(generateFloat(0f, 100f));
+        view.setOriginally(generateFloat(0f, 100f));
+        view.setHappy(generateFloat(0f, 100f));
+        return view;
+    }
+
     public Dream generateDream() {
         Dream dream = new Dream();
         dream.setDate(new Date());
@@ -82,6 +93,10 @@ public class EntityGenerator {
 
     private float generateFloat(float max, float min) {
         return rand.nextFloat() * (max - min) + min;
+    }
+
+    private int generateInt(int max, int min) {
+        return rand.nextInt() * (max - min) + min;
     }
 
 

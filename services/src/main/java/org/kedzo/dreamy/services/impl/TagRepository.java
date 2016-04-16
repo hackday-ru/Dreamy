@@ -5,6 +5,12 @@ import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 @Repository("tagRepository")
 public class TagRepository implements CrudRepository<Tag> {
     
@@ -34,6 +40,16 @@ public class TagRepository implements CrudRepository<Tag> {
     @Override
     public long update(Tag entity) {
         return save(entity);
+    }
+
+    public Set<Tag> getRandTags() {
+        Random random = new Random();
+        Query query = entityManager.instance().createNativeQuery(
+                "SELECT * FROM tags ORDER BY rand() LIMIT " + random.nextInt(10),
+                Tag.class
+        );
+        List<Tag> resultList = (List<Tag>) query.getResultList();
+        return new HashSet<>(resultList);
     }
     
 }

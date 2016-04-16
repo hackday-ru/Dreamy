@@ -19,7 +19,7 @@ public class Episode implements RepositoryEntity {
     private String note;
     @Column(name = "sequence")
     private int order;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private Set<Tag> tags;
 
     public long getId() {

@@ -21,6 +21,8 @@ public class Dream implements RepositoryEntity {
     private String description;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Episode> episodes;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<DreamType> types;
 
     public long getId() {
         return id;
@@ -52,5 +54,13 @@ public class Dream implements RepositoryEntity {
 
     public void setEpisodes(Set<Episode> episodes) {
         this.episodes = episodes;
+    }
+
+    public Set<DreamType> getHappy() {
+        return types;
+    }
+
+    public void setHappy(Set<DreamType> happy) {
+        this.types = happy;
     }
 }
