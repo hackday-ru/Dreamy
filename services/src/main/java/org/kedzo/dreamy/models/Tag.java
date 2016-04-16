@@ -12,6 +12,8 @@ public class Tag implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private long id;
+    @Column(name = "term")
+    private String term;
     @Column(name = "picture_url")
     private String picture;
     @Column(name = "intepritation")
@@ -23,6 +25,14 @@ public class Tag implements RepositoryEntity {
 
     private void setId(int id) {
         this.id = id;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     public String getPcture() {
