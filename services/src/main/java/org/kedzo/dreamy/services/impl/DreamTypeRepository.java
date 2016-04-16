@@ -1,6 +1,8 @@
 package org.kedzo.dreamy.services.impl;
 
+import org.kedzo.dreamy.models.Dream;
 import org.kedzo.dreamy.models.DreamType;
+import org.kedzo.dreamy.models.User;
 import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -51,6 +53,16 @@ public class DreamTypeRepository implements CrudRepository<DreamType> {
                 DreamType.class
         );
         List<DreamType> resultList = ((List<DreamType>) query.getResultList());
+        return new HashSet<>(resultList);
+    }
+
+    public Set<DreamType> getAllDreamsTypes(Dream dream) {
+        Query query = entityManager.instance().createNativeQuery(
+                String.format("SELECT * FROM dream_type WHERE id IN (SELECT types_id FROM dreams_dream_type WHERE Dream_id=%s)",
+                        dream.getId()),
+                Dream.class
+        );
+        List<DreamType> resultList = (List<DreamType>) query.getResultList();
         return new HashSet<>(resultList);
     }
 }
