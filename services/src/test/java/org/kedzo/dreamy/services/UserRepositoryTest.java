@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kedzo.dreamy.commons.EntityGenerator;
+import org.kedzo.dreamy.models.User;
 import org.kedzo.dreamy.services.impl.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -55,12 +56,11 @@ public class UserRepositoryTest {
     @Test
     public void testSaveLoadDelete() throws Exception {
         long id = userRepository.save(user1);
-        User loadUser = userRepository.load(id);
-        Assert.assertEquals(user1, loadUser);
+        User load = userRepository.load(id);
+        Assert.assertEquals(user1, load);
         userRepository.delete(user1);
-        Assert.assertEquals(loadUser, deleteEmployee);
-        loadUser = userRepository.load(id);
-        Assert.assertNull(loadUser);
+        load = userRepository.load(id);
+        Assert.assertNull(load);
     }
 
 }
