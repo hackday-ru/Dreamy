@@ -8,7 +8,7 @@ import javax.print.attribute.standard.MediaSize;
 /**
  * Created by woodman on 16.04.16.
  */
-public class DreamType {
+public class DreamType implements RepositoryEntity {
     @Id
     @GeneratedValue
     @Column(name = "id")
