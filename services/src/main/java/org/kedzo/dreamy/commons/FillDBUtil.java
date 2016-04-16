@@ -1,8 +1,6 @@
 package org.kedzo.dreamy.commons;
 
-import org.kedzo.dreamy.models.Dream;
-import org.kedzo.dreamy.models.Episode;
-import org.kedzo.dreamy.models.User;
+import org.kedzo.dreamy.models.*;
 import org.kedzo.dreamy.services.impl.BlogRepository;
 import org.kedzo.dreamy.services.impl.DreamRepository;
 import org.kedzo.dreamy.services.impl.TagRepository;
@@ -51,12 +49,17 @@ public class FillDBUtil {
                 Set<Episode> episodes = new HashSet<>();
                 for (int j = 0; j < entry; j++) {
                     Episode episode = generator.generateEpisode(i);
+                    episode.setTags(getTags());
                     episodes.add(episode);
                 }
                 dream.setEpisodes(episodes);
                 dreams.add(dream);
             }
             user.setDreams(dreams);
+            EmotionalView emotionalView = generator.generateEmotion();
+            emotionalView.setHappy(getHappy(dreams));
+            emotionalView.setOriginally(getOriginally(dreams));
+            user.setEmotionalViews(emotionalView);
             users.add(user);
         }
         for (User user : users) {
@@ -64,6 +67,24 @@ public class FillDBUtil {
         }
 
         System.out.println("End fill db");
+    }
+
+    private Set<Tag> getTags() {
+        return tagRepository.getRandTags();
+    }
+
+    private double getHappy(Set<Dream> dreams) {
+        return dreams.stream()
+                .mapToDouble(dream -> dream.getHappy().stream()
+                        .mapToInt(DreamType::getWeight)
+                        .average()
+                        .orElse(0.0))
+                .average()
+                .orElse(0.0);
+    }
+
+    private double getOriginally(Set<Dream> dreams) {
+        return dreams.stream().mapToInt(dream -> dream.getEpisodes().size()).average().orElse(0.0);
     }
 
 }

@@ -55,4 +55,12 @@ public class Dream implements RepositoryEntity {
     public void setEpisodes(Set<Episode> episodes) {
         this.episodes = episodes;
     }
+
+    public Set<DreamType> getHappy() {
+        return types;
+    }
+
+    public void setHappy(Set<DreamType> happy) {
+        this.types = happy;
+    }
 }

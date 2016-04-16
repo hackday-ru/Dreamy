@@ -1,22 +1,18 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.print.attribute.standard.MediaSize;
+import javax.persistence.*;
 
-/**
- * Created by woodman on 16.04.16.
- */
-public class DreamType implements RepositoryEntity {
+@Entity
+@Table(name = "dream_type")
+public class DreamType {
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
     @Column(name = "name")
     private long name;
-    @Column(name = "mass")
-    private int mass;
+    @Column(name = "weight")
+    private int weight;
     public long getId() {
         return id;
     }
@@ -33,11 +29,11 @@ public class DreamType implements RepositoryEntity {
         this.name = name;
     }
 
-    public int getMass() {
-        return mass;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setMass(int mass) {
-        this.mass = mass;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 }
