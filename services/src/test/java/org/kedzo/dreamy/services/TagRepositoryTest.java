@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kedzo.dreamy.commons.EntityGenerator;
-import org.kedzo.dreamy.models.Dream;
-import org.kedzo.dreamy.services.impl.DreamRepository;
+import org.kedzo.dreamy.models.Tag;
+import org.kedzo.dreamy.services.impl.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,14 +23,14 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring-config.xml")
-public class DreamRepositoryTest {
+public class TagRepositoryTest {
 
-    private Dream dream1;
-    private Dream dream2;
-    private Dream dream3;
+    private Tag tag1;
+    private Tag tag2;
+    private Tag tag3;
 
-    @Resource(name = "dreamRepository")
-    private DreamRepository repository;
+    @Resource(name = "tagRepository")
+    private TagRepository repository;
 
     @Autowired
     private EntityGenerator generator;
@@ -38,16 +38,16 @@ public class DreamRepositoryTest {
 
     @Before
     public void before() throws Exception {
-        dream1 = generator.generateDream();
-        dream2 = generator.generateDream();
-        dream3 = generator.generateDream();
+        tag1 = generator.generateTag();
+        tag2 = generator.generateTag();
+        tag3 = generator.generateTag();
     }
 
     @After
     public void after() throws Exception {
-        repository.delete(dream1);
-        repository.delete(dream2);
-        repository.delete(dream3);
+        repository.delete(tag1);
+        repository.delete(tag2);
+        repository.delete(tag3);
     }
 
     /**
@@ -55,10 +55,10 @@ public class DreamRepositoryTest {
      */
     @Test
     public void testSaveLoadDelete() throws Exception {
-        long id = repository.save(dream1);
-        Dream load = repository.load(id);
-        Assert.assertEquals(dream1, load);
-        repository.delete(dream1);
+        long id = repository.save(tag1);
+        Tag load = repository.load(id);
+        Assert.assertEquals(tag1, load);
+        repository.delete(tag1);
         load = repository.load(id);
         Assert.assertNull(load);
     }

@@ -5,7 +5,7 @@ import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("blogRepositort")
+@Repository("blogRepository")
 public class BlogRepository implements CrudRepository<Blog> {
 
     @Autowired
