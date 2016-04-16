@@ -1,5 +1,6 @@
 package org.kedzo.dreamy.services.impl;
 
+import org.kedzo.dreamy.models.User;
 import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
