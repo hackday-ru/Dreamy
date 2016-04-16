@@ -2,8 +2,10 @@ package org.kedzo.dreamy.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,6 +31,7 @@ public class BlogEntry implements RepositoryEntity {
     private String text;
     @Column(name = "dream_id")
     private Dream dream;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "blog_enties")
     private Set<BlogComment> blogCommentses;
 
     public long getId() {

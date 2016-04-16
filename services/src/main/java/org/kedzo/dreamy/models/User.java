@@ -35,7 +35,9 @@ public class User implements RepositoryEntity {
     private Boolean individual;
     @Column(name = "blog_id")
     private Blog blog;
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Dream> dreams;
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<User> friends;
 
     public long getId() {
