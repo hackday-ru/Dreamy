@@ -1,12 +1,22 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by woodman on 16.04.16.
  */
 public class BlogComments implements RepositoryEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+    @Column(name = "blog_entry_id")
     private BlogEntry blogEntry;
+    @Column(name = "user_id")
     private User user;
+    @Column(name = "comment")
     private String comment;
 
     public long getId() {

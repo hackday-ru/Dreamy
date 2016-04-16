@@ -1,16 +1,27 @@
 package org.kedzo.dreamy.models;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by woodman on 16.04.16.
  */
 public class BlogEntry implements RepositoryEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
+    @Column(name = "blog_id")
     private Blog blog;
+    @Column(name = "date")
     private Date date;
+    @Column(name = "title")
     private String title;
+    @Column(name = "text")
     private String text;
+    @Column(name = "dream_id")
     private Dream dream;
 
     public long getId() {
