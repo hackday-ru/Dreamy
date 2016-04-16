@@ -1,4 +1,4 @@
-package org.kedzo.dreamy.servises;
+package org.kedzo.dreamy.services;
 
 import org.kedzo.dreamy.models.RepositoryEntity;
 

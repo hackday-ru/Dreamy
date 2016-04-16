@@ -1,17 +1,17 @@
-package org.kedzo.dreamy.servises.impl;
+package org.kedzo.dreamy.services.impl;
 
-import org.kedzo.dreamy.servises.CrudRepository;
+import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository(value = "userRepository")
-public class UserRepository implements CrudRepository<User> {
+@Repository(value = "dreamRepository")
+public class DreamRepository implements CrudRepository<Dream> {
 
     @Autowired
     DreamyEntityManager entityManager;
 
     @Override
-    public long save(User entity) {
+    public long save(Dream entity) {
         entityManager.instance().getTransaction().begin();
         entityManager.instance().persist(entity);
         entityManager.instance().getTransaction().commit();
@@ -19,19 +19,19 @@ public class UserRepository implements CrudRepository<User> {
     }
 
     @Override
-    public User load(long id) {
-        return entityManager.instance().find(User.class, id);
+    public Dream load(long id) {
+        return entityManager.instance().find(Dream.class, id);
     }
 
     @Override
-    public void delete(User entity) {
+    public void delete(Dream entity) {
         entityManager.instance().getTransaction().begin();
         entityManager.instance().remove(entity);
         entityManager.instance().getTransaction().commit();
     }
 
     @Override
-    public long update(User entity) {
+    public long update(Dream entity) {
         return save(entity);
     }
 }

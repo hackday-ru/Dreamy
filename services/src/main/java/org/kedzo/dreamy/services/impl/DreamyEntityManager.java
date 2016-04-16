@@ -1,4 +1,4 @@
-package org.kedzo.dreamy.servises.impl;
+package org.kedzo.dreamy.services.impl;
 
 import org.springframework.stereotype.Component;
 

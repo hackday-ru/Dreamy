@@ -1,17 +1,17 @@
-package org.kedzo.dreamy.servises.impl;
+package org.kedzo.dreamy.services.impl;
 
-import org.kedzo.dreamy.servises.CrudRepository;
+import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("blogRepositort")
-public class BlogRepository implements CrudRepository<Blog> {
-
+@Repository("tagRepository")
+public class TagRepository implements CrudRepository<Tag> {
+    
     @Autowired
     DreamyEntityManager entityManager;
 
     @Override
-    public long save(Blog entity) {
+    public long save(Tag entity) {
         entityManager.instance().getTransaction().begin();
         entityManager.instance().persist(entity);
         entityManager.instance().getTransaction().commit();
@@ -19,19 +19,20 @@ public class BlogRepository implements CrudRepository<Blog> {
     }
 
     @Override
-    public Blog load(long id) {
-        return entityManager.instance().find(Blog.class, id);
+    public Tag load(long id) {
+        return entityManager.instance().find(Tag.class, id);
     }
 
     @Override
-    public void delete(Blog entity) {
+    public void delete(Tag entity) {
         entityManager.instance().getTransaction().begin();
         entityManager.instance().remove(entity);
         entityManager.instance().getTransaction().commit();
     }
 
     @Override
-    public long update(Blog entity) {
+    public long update(Tag entity) {
         return save(entity);
     }
+    
 }
