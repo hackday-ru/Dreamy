@@ -1,13 +1,6 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -26,7 +19,7 @@ public class Episode implements RepositoryEntity {
     private String note;
     @Column(name = "order")
     private int order;
-    @OneToMany(mappedBy = "episodes", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Tag> tags;
 
     public long getId() {

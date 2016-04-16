@@ -33,11 +33,11 @@ public class User implements RepositoryEntity {
     private float lng;
     @Column(name = "is_private")
     private Boolean individual;
-    @Column(name = "blog_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Blog blog;
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Dream> dreams;
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<User> friends;
 
     public long getId() {

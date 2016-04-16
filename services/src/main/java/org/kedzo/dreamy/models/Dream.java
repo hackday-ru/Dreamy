@@ -1,14 +1,6 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -25,9 +17,9 @@ public class Dream implements RepositoryEntity {
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
     private Date date;
-    @Column(name = "discription")
+    @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "dreams", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Episode> episodes;
 
     public long getId() {

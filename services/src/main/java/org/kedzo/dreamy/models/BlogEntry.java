@@ -1,14 +1,6 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -29,9 +21,9 @@ public class BlogEntry implements RepositoryEntity {
     private String title;
     @Column(name = "text")
     private String text;
-    @Column(name = "dream_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Dream dream;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "blog_enties")
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<BlogComment> blogCommentses;
 
     public long getId() {

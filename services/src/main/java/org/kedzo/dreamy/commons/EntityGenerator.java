@@ -25,21 +25,21 @@ public class EntityGenerator {
         user.setLng(generateFloat(180, -180));
         user.setLat(generateFloat(180, -180));
         user.setIndividual(rand.nextBoolean());
-        return null;
+        return user;
     }
 
     public Dream generateDream() {
         Dream dream = new Dream();
         dream.setDate(new Date());
         dream.setDescription(generateString(100));
-        return null;
+        return dream;
     }
 
     public Tag generateTag() {
         Tag tag = new Tag();
         tag.setInterpritation(generateString(100));
         tag.setPcture(generateByte(1000));
-        return null;
+        return tag;
     }
 
     public Episode generateEpisode() {
@@ -51,7 +51,7 @@ public class EntityGenerator {
 
     public Blog generateBlog() {
         Blog blog = new Blog();
-        return null;
+        return blog;
     }
 
     public BlogComment generateBlogComment() {
