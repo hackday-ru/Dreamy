@@ -2,7 +2,6 @@ package org.kedzo.dreamy.models;
 
 /**
  * Created by woodman on 16.04.16.
- * мечты,кошмары,сознательные,предсказывающие
  */
 public enum DreamType {
     DREAM("мечта"),
