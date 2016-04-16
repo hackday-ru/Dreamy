@@ -19,7 +19,7 @@ public class Dream implements RepositoryEntity {
     private Date date;
     @Column(name = "description")
     private String description;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Episode> episodes;
 
     public long getId() {

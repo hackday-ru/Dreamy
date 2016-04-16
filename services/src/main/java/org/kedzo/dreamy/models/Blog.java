@@ -12,7 +12,7 @@ public class Blog implements RepositoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private long id;
     @OneToMany(fetch = FetchType.LAZY)
     private Set<BlogEntry> blogEntries;
 

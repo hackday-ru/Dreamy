@@ -45,9 +45,15 @@ public class BlogRepositoryTest {
 
     @After
     public void after() throws Exception {
-        repository.delete(blog1);
-        repository.delete(blog2);
-        repository.delete(blog3);
+        if (repository.load(blog1.getId()) != null) {
+            repository.delete(blog1);
+        }
+        if (repository.load(blog2.getId()) != null) {
+            repository.delete(blog2);
+        }
+        if (repository.load(blog3.getId()) != null) {
+            repository.delete(blog3);
+        }
     }
 
     /**

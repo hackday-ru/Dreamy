@@ -13,11 +13,11 @@ public class Episode implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "picture")
-    private byte[] picture;
+    @Column(name = "picture_url")
+    private String picture;
     @Column(name = "note")
     private String note;
-    @Column(name = "order")
+    @Column(name = "sequence")
     private int order;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Tag> tags;
@@ -30,11 +30,11 @@ public class Episode implements RepositoryEntity {
         this.id = id;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 

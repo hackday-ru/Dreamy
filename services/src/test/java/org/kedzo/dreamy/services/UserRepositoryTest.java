@@ -30,7 +30,7 @@ public class UserRepositoryTest {
     private User user3;
 
     @Resource(name = "userRepository")
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Autowired
     private EntityGenerator generator;
@@ -45,9 +45,15 @@ public class UserRepositoryTest {
 
     @After
     public void after() throws Exception {
-        userRepository.delete(user1);
-        userRepository.delete(user2);
-        userRepository.delete(user3);
+        if (repository.load(user1.getId()) != null) {
+            repository.delete(user1);
+        }
+        if (repository.load(user2.getId()) != null) {
+            repository.delete(user2);
+        }
+        if (repository.load(user3.getId()) != null) {
+            repository.delete(user3);
+        }
     }
 
     /**
@@ -55,11 +61,11 @@ public class UserRepositoryTest {
      */
     @Test
     public void testSaveLoadDelete() throws Exception {
-        long id = userRepository.save(user1);
-        User load = userRepository.load(id);
+        long id = repository.save(user1);
+        User load = repository.load(id);
         Assert.assertEquals(user1, load);
-        userRepository.delete(user1);
-        load = userRepository.load(id);
+        repository.delete(user1);
+        load = repository.load(id);
         Assert.assertNull(load);
     }
 

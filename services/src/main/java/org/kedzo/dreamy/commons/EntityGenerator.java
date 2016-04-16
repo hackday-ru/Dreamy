@@ -21,7 +21,7 @@ public class EntityGenerator {
         user.setLogin(generateString(8));
         user.setPassword(generateString(10));
         user.setBirthday(new Date());
-        user.setPicture(generateByte(1000));
+        user.setPicture(generateString(50));
         user.setLng(generateFloat(180, -180));
         user.setLat(generateFloat(180, -180));
         user.setIndividual(rand.nextBoolean());
@@ -38,14 +38,15 @@ public class EntityGenerator {
     public Tag generateTag() {
         Tag tag = new Tag();
         tag.setInterpritation(generateString(100));
-        tag.setPcture(generateByte(1000));
+        tag.setPicture(generateString(50));
         return tag;
     }
 
     public Episode generateEpisode() {
         Episode episode = new Episode();
         episode.setNote(generateString(100));
-        episode.setPicture(generateByte(1000));
+        episode.setPicture(generateString(50));
+        episode.setOrder(1);
         return episode;
     }
 

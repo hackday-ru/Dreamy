@@ -45,9 +45,15 @@ public class TagRepositoryTest {
 
     @After
     public void after() throws Exception {
-        repository.delete(tag1);
-        repository.delete(tag2);
-        repository.delete(tag3);
+        if (repository.load(tag1.getId()) != null) {
+            repository.delete(tag1);
+        }
+        if (repository.load(tag2.getId()) != null) {
+            repository.delete(tag2);
+        }
+        if (repository.load(tag3.getId()) != null) {
+            repository.delete(tag3);
+        }
     }
 
     /**

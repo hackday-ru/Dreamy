@@ -1,11 +1,6 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by woodman on 16.04.16.
@@ -17,8 +12,8 @@ public class Tag implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "picture")
-    private byte[] pcture;
+    @Column(name = "picture_url")
+    private String picture;
     @Column(name = "intepritation")
     private String interpritation;
 
@@ -30,12 +25,12 @@ public class Tag implements RepositoryEntity {
         this.id = id;
     }
 
-    public byte[] getPcture() {
-        return pcture;
+    public String getPcture() {
+        return picture;
     }
 
-    public void setPcture(byte[] pcture) {
-        this.pcture = pcture;
+    public void setPicture(String pcture) {
+        this.picture = pcture;
     }
 
     public String getInterpritation() {

@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 
 /**
  * DefaultRepositoryService Tester.
@@ -39,15 +40,25 @@ public class DreamRepositoryTest {
     @Before
     public void before() throws Exception {
         dream1 = generator.generateDream();
+        dream1.setEpisodes(Collections.singleton(generator.generateEpisode()));
         dream2 = generator.generateDream();
+        dream2.setEpisodes(Collections.singleton(generator.generateEpisode()));
         dream3 = generator.generateDream();
+        dream3.setEpisodes(Collections.singleton(generator.generateEpisode()));
     }
 
     @After
     public void after() throws Exception {
-        repository.delete(dream1);
-        repository.delete(dream2);
-        repository.delete(dream3);
+        if (repository.load(dream1.getId()) != null) {
+            repository.delete(dream1);
+        }
+        if (repository.load(dream2.getId()) != null) {
+            repository.delete(dream2);
+        }
+        if (repository.load(dream3.getId()) != null) {
+            repository.delete(dream3);
+        }
+
     }
 
     /**

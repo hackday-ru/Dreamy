@@ -22,8 +22,9 @@ public class User implements RepositoryEntity {
     private String password;
     @Column(name = "username")
     private String username;
-    @Column(name = "picture")
-    private byte[] picture;
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "picture_url")
+    private String picture;
     @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private Date birthday;
@@ -80,11 +81,11 @@ public class User implements RepositoryEntity {
         this.username = username;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
