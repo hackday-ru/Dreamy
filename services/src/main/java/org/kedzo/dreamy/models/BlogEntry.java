@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
@@ -13,8 +14,6 @@ public class BlogEntry implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "blog_id")
-    private Blog blog;
     @Column(name = "date")
     private Date date;
     @Column(name = "title")
@@ -23,6 +22,7 @@ public class BlogEntry implements RepositoryEntity {
     private String text;
     @Column(name = "dream_id")
     private Dream dream;
+    private Set<BlogComment> blogCommentses;
 
     public long getId() {
         return id;
@@ -30,14 +30,6 @@ public class BlogEntry implements RepositoryEntity {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
     }
 
     public Date getDate() {
@@ -70,5 +62,13 @@ public class BlogEntry implements RepositoryEntity {
 
     public void setDream(Dream dream) {
         this.dream = dream;
+    }
+
+    public Set<BlogComment> getBlogCommentses() {
+        return blogCommentses;
+    }
+
+    public void setBlogCommentses(Set<BlogComment> blogCommentses) {
+        this.blogCommentses = blogCommentses;
     }
 }

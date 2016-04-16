@@ -7,13 +7,11 @@ import javax.persistence.Id;
 /**
  * Created by woodman on 16.04.16.
  */
-public class BlogComments implements RepositoryEntity {
+public class BlogComment implements RepositoryEntity {
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "blog_entry_id")
-    private BlogEntry blogEntry;
     @Column(name = "user_id")
     private User user;
     @Column(name = "comment")
@@ -25,14 +23,6 @@ public class BlogComments implements RepositoryEntity {
 
     private void setId(int id) {
         this.id = id;
-    }
-
-    public BlogEntry getBlogEntry() {
-        return blogEntry;
-    }
-
-    public void setBlogEntry(BlogEntry blogEntry) {
-        this.blogEntry = blogEntry;
     }
 
     public User getUser() {

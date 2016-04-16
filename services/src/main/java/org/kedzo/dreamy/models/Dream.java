@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
@@ -13,12 +14,11 @@ public class Dream implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "user_id")
-    private User user;
     @Column(name = "date")
     private Date date;
     @Column(name = "discription")
-    private String discription;
+    private String description;
+    private Set<Episode> episodes;
 
     public long getId() {
         return id;
@@ -26,14 +26,6 @@ public class Dream implements RepositoryEntity {
 
     private void setId(long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Date getDate() {
@@ -44,11 +36,19 @@ public class Dream implements RepositoryEntity {
         this.date = date;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(Set<Episode> episodes) {
+        this.episodes = episodes;
     }
 }

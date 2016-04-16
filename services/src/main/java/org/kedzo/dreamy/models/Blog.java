@@ -3,6 +3,7 @@ package org.kedzo.dreamy.models;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
@@ -12,8 +13,7 @@ public class Blog implements RepositoryEntity {
     @GeneratedValue
     @Column(name = "id")
     private int id;
-    @Column(name = "user_id")
-    private User user;
+    private Set<BlogEntry> blogEntries;
 
     public long getId() {
         return id;
@@ -23,11 +23,11 @@ public class Blog implements RepositoryEntity {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Set<BlogEntry> getBlogEntries() {
+        return blogEntries;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBlogEntries(Set<BlogEntry> blogEntries) {
+        this.blogEntries = blogEntries;
     }
 }

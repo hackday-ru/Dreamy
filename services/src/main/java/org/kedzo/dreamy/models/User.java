@@ -1,13 +1,8 @@
 package org.kedzo.dreamy.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
@@ -34,11 +29,13 @@ public class User implements RepositoryEntity {
     @Column(name = "latitude")
     private float lat;
     @Column(name = "longitude")
-    private float longitut;
+    private float lng;
     @Column(name = "is_private")
     private Boolean individual;
     @Column(name = "blog_id")
     private Blog blog;
+    private Set<Dream> dreams;
+    private Set<User> friends;
 
     public long getId() {
         return id;
@@ -104,12 +101,12 @@ public class User implements RepositoryEntity {
         this.lat = lat;
     }
 
-    public float getLongitut() {
-        return longitut;
+    public float getLng() {
+        return lng;
     }
 
-    public void setLongitut(float longitut) {
-        this.longitut = longitut;
+    public void setLng(float lng) {
+        this.lng = lng;
     }
 
     public Boolean getIndividual() {
@@ -126,6 +123,22 @@ public class User implements RepositoryEntity {
 
     public void setBlog(Blog blog) {
         this.blog = blog;
+    }
+
+    public Set<Dream> getDreams() {
+        return dreams;
+    }
+
+    public void setDreams(Set<Dream> dreams) {
+        this.dreams = dreams;
+    }
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
     }
 }
 

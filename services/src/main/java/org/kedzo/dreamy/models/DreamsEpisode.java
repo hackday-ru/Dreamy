@@ -16,8 +16,6 @@ public class DreamsEpisode implements RepositoryEntity {
     private Dream dream;
     @Column(name = "episode_id")
     private Episode episode;
-    @Column(name = "order")
-    private int order;
 
     public long getId() {
         return id;
@@ -41,13 +39,5 @@ public class DreamsEpisode implements RepositoryEntity {
 
     public void setEpisode(Episode episode) {
         this.episode = episode;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
     }
 }

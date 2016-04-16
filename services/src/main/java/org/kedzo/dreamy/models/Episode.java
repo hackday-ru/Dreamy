@@ -3,6 +3,7 @@ package org.kedzo.dreamy.models;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Set;
 
 /**
  * Created by woodman on 16.04.16.
@@ -16,6 +17,8 @@ public class Episode implements RepositoryEntity {
     private byte[] picture;
     @Column(name = "note")
     private String note;
+    private int order;
+    private Set<Tag> tags;
 
     public long getId() {
         return id;
@@ -39,5 +42,21 @@ public class Episode implements RepositoryEntity {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }
