@@ -10,11 +10,11 @@
     <import resource="classpath:spring-config.xml"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/resources/templates"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/templates"/>
+        <property name="suffix" value=".html"/>
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="classpath*:resources"/>
+    <mvc:resources mapping="/resources/**" location="classpath:resources"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
