@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +50,20 @@ public class DreamController {
     public Dream deleteById(@RequestParam long dreamId) {
         Dream dream = dreamRepository.load(dreamId);
         dreamRepository.delete(dream);
+        return dream;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Dream addDream(@RequestBody Dream dream) {
+        dreamRepository.save(dream);
+        return dream;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Dream updeteDream(@RequestBody Dream dream) {
+        dreamRepository.update(dream);
         return dream;
     }
 }

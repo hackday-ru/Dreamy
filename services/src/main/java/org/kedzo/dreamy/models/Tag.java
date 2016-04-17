@@ -19,6 +19,13 @@ public class Tag implements RepositoryEntity {
     @Column(name = "intepritation")
     private String interpritation;
 
+    public Tag() {
+    }
+
+    public Tag(String interpritation) {
+        this.interpritation = interpritation;
+    }
+
     public long getId() {
         return id;
     }
