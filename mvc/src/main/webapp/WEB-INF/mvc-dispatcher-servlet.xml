@@ -14,7 +14,7 @@
         <property name="suffix" value=".html"/>
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="/"/>
+    <mvc:resources mapping="/resources/**" location="WEB-INF/" />
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
