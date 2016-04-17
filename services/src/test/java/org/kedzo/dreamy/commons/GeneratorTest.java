@@ -93,4 +93,15 @@ public class GeneratorTest {
         Assert.notNull(blogEntry.getText());
         Assert.notNull(blogEntry.getDate());
     }
+
+    @Test
+    public void generateEmotionTest() throws Exception {
+        EmotionalView view = generator.generateEmotion();
+        Assert.notNull(view);
+        Assert.notNull(view.getBrightly());
+        Assert.notNull(view.getCommon());
+        Assert.notNull(view.getFriendly());
+        Assert.notNull(view.getUnstable());
+        Assert.notNull(view.getOriginally());
+    }
 }

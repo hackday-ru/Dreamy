@@ -21,12 +21,12 @@ public class UtilDreamType {
     private void generate() {
         addDreamTypeDb("мечта", 5);
         addDreamTypeDb("кошмар", -5);
-        addDreamTypeDb("осознаный", 3);
-        addDreamTypeDb("вещий", 4);
-        addDreamTypeDb("эротический", 5);
+        addDreamTypeDb("осознаный", 0);
+        addDreamTypeDb("вещий", 0);
+        addDreamTypeDb("эротический", 3);
         addDreamTypeDb("повторяющийся", -1);
-        addDreamTypeDb("творчкский", 3);
-        addDreamTypeDb("летаргичкский", -3);
+        addDreamTypeDb("творчкский", 1);
+        addDreamTypeDb("летаргичкский", -1);
     }
 
     private void addDreamTypeDb(String name, int weight) {

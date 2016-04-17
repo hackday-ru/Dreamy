@@ -40,7 +40,7 @@ public class User implements RepositoryEntity {
     private Set<Dream> dreams;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<User> friends;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private EmotionalView emotionalViews;
 
 
