@@ -9,9 +9,11 @@ import org.kedzo.dreamy.services.impl.TagRepository;
 import org.kedzo.dreamy.services.impl.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.HashMap;
@@ -34,7 +36,8 @@ public class TagController {
     @Autowired
     DreamRepository dreamRepository;
 
-    @RequestMapping("/popular")
+    @RequestMapping(value = "/popular", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Set<PopularTagResponce> getPopularTag() {
         Random random = new Random();
         Set<Tag> tags = tagRepository.getRandTags();
@@ -45,7 +48,8 @@ public class TagController {
         return responces;
     }
 
-    @RequestMapping("/popularForUser")
+    @RequestMapping(value = "/popularForUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Set<PopularTagResponce> getPopularTagForUser(@RequestParam long userId) {
         User user = userRepository.load(userId);
         Set<Dream> userDreams = userRepository.getAllDreams(user);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
@@ -31,17 +32,20 @@ public class DreamController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/getByid", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dream getDreamById(@RequestParam long id) {
-        return dreamRepository.load(id);
+    @ResponseBody
+    public Dream getDreamById(@RequestParam long dreamId) {
+        return dreamRepository.load(dreamId);
     }
 
     @RequestMapping(value = "/getByUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Set<Dream> getDreamsByUserId(@RequestParam long userId) {
         User user = userRepository.load(userId);
         return user.getDreams();
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Dream deleteById(@RequestParam long dreamId) {
         Dream dream = dreamRepository.load(dreamId);
         dreamRepository.delete(dream);
