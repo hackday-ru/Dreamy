@@ -147,6 +147,11 @@ public class DreamController {
         return null;
     }
 
+    @RequestMapping(value = "/journal", method = RequestMethod.GET)
+    public ModelAndView getJournal() {
+        return new ModelAndView("/journal-dream");
+    }
+
     private String getCookie(HttpServletRequest request, String cookieName) {
         Optional<Cookie> optionalCookie = Arrays.stream(request.getCookies())
                 .filter(cookie -> cookie.getName().equals(cookieName))
