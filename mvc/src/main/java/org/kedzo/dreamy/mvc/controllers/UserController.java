@@ -9,8 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.OptionalLong;
 
 @Controller
 @Scope(value = WebApplicationContext.SCOPE_SESSION)
@@ -20,9 +27,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/signup")
-    public String getUserInfo() {
-        return "user info";
+
+    @RequestMapping(
+            value = "/signup",
+            method = RequestMethod.GET
+    )
+    public String signup() {
+        return "signup";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,6 +41,26 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         userRepository.update(user);
         return user;
+    }
+
+    @RequestMapping(
+            value = "/signup",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            method = RequestMethod.POST)
+    public String signup(
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "password") String password,
+            HttpServletResponse response) {
+
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUsername(email.split("@")[0]);
+        long userId = userRepository.save(user);
+        response.addCookie(new Cookie("user", String.valueOf(userId)));
+
+
+        return "redirect:/user/info";
     }
 
     @RequestMapping(value = "/numberOfUsers", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,4 +71,17 @@ public class UserController {
 
 
 
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserInfo(final HttpServletRequest request) {
+        OptionalLong userId = Arrays.stream(request.getCookies())
+                .filter(cookie -> cookie.getName().equals("user"))
+                .mapToLong(cookie -> Long.valueOf(cookie.getValue()))
+                .findFirst();
+
+        if (userId.isPresent()) {
+            return userRepository.load(userId.getAsLong());
+        }
+        return null;
+    }
 }

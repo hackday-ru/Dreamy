@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Repository("tagRepository")
 public class TagRepository implements CrudRepository<Tag> {
-
+    
     @Autowired
     DreamyEntityManager entityManager;
 
@@ -52,4 +54,9 @@ public class TagRepository implements CrudRepository<Tag> {
         return new HashSet<>(resultList);
     }
 
+    public Set<Tag> getTagsByTerms(List<String> terms) {
+        TypedQuery<Tag> query = entityManager.instance().createQuery("SELECT t from Tag as t where t.term in (:terms)", Tag.class)
+                .setParameter("terms", terms);
+        return query.getResultList().stream().collect(Collectors.toSet());
+    }
 }

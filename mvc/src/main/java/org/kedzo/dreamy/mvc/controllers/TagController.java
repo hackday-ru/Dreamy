@@ -44,7 +44,7 @@ public class TagController {
         Set<Tag> tags = tagRepository.getRandTags();
         Set<PopularTagResponce> responces = new HashSet<>();
         tags.stream().forEach(tag -> {
-            responces.add(new PopularTagResponce(random.nextInt(), tag));
+            responces.add(new PopularTagResponce(random.nextInt(20), tag));
         });
         return responces;
     }
