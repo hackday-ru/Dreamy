@@ -57,4 +57,23 @@ public class Tag implements RepositoryEntity {
     public void setInterpritation(String interpritation) {
         this.interpritation = interpritation;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tag tag = (Tag) o;
+
+        if (id != tag.id) return false;
+        return term != null ? term.equals(tag.term) : tag.term == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (term != null ? term.hashCode() : 0);
+        return result;
+    }
 }

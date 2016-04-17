@@ -1,9 +1,13 @@
 package org.kedzo.dreamy.services.impl;
 
+import org.kedzo.dreamy.models.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Repository(value = "episodeTagsRepository")
 public class EpisodeTagsRepository {
@@ -26,5 +30,21 @@ public class EpisodeTagsRepository {
             System.out.println(e.getMessage());
         }
     }
+
+    public Set<Tag> getTagsByEpisodeId(long episodeId) {
+        try {
+
+            Query query = entityManager.instance().createNativeQuery(
+                    String.format("select * from tags where tags.id in (select tags_id from episodes_tags where episode_id = %s);", episodeId), Tag.class);
+
+            List<Tag> resultList = ((List<Tag>) query.getResultList());
+            return new LinkedHashSet<>(resultList);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 
 }

@@ -134,10 +134,11 @@ public class DreamController {
         String dreamId = getCookie(request, "dreamId");
         if (dreamId != null) {
             Dream dream = dreamRepository.load(Long.valueOf(dreamId));
-            List<Tag> tags = dream.getEpisodes()
-                    .stream()
-                    .flatMap(episode -> episode.getTags().stream())
+
+            List<Tag> tags = dream.getEpisodes().stream()
+                    .flatMap(e -> episodeTagsRepository.getTagsByEpisodeId(e.getId()).stream())
                     .collect(Collectors.toList());
+
             return tags.stream().map(tag -> {
                 List<String> resp = new ArrayList<>();
                 resp.add(tag.getPcture());
