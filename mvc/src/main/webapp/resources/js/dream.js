@@ -1,3 +1,18 @@
+$(document).ready(function () {
+    var url = 'add-dream';
+    var data = {
+        date: new Date()
+    };
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success: function (data) {
+        }
+    });
+});
+
 $('.tags-input').keydown(function (e) {
     if (e.keyCode == '32' || e.keyCode == 190) {
         var data = {
