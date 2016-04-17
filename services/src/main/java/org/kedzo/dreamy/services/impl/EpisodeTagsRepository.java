@@ -16,8 +16,7 @@ public class EpisodeTagsRepository {
             entityManager.instance().getTransaction().begin();
 
             Query query = entityManager.instance().createNativeQuery(
-                    "INSERT INTO episodes_tags(Episode_id, tags_id) VALUES (:episode, :tag)"
-            ).setParameter("episode", episodeId).setParameter("tag", tagId);
+                    String.format("INSERT INTO episodes_tags(episode_id, tags_id) VALUES (%s, %s)", episodeId, tagId));
 
             query.executeUpdate();
 

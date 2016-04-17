@@ -105,7 +105,9 @@ public class DreamController {
         String dreamId = getCookie(httpRequest, "dreamId");
         if (dreamId != null ) {
             Dream dream = dreamRepository.load(Long.valueOf(dreamId));
-            dream.addEpisode(episode);
+            Set<Episode> episodes = dream.getEpisodes();
+            episodes.add(episode);
+            dream.setEpisodes(episodes);
             dreamRepository.update(dream);
         }
 
