@@ -1,56 +1,18 @@
 $(document).ready(function () {
-    var url = 'get-dream';
-    var data = {
-        limit: 10
-    };
+    var url = '/app/dream/interpret';
     $.ajax({
         url: url,
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
-        data: data,
+        data: {},
         success: function (data) {
-            render(data);
+            var block = '';
+            for (var i = 0; i < data.length; i++) {
+                block = block +
+                    '<div class="row"><div class="col-md-2"><img src="../resources/icons/' + data[i][0] + '" width="30"/></div>' +
+                    '<div class="col-md-10"><p>' + data[i][1] + '</p></div></div>';
+            }
+            $('#container-icons').html(block);
         }
     });
 });
-
-$('.tags-input').keydown(function (e) {
-    if (e.keyCode == '32' || e.keyCode == 190) {
-        var data = {
-            tags: $(this).val().split(new RegExp('[., ]', 'g'))
-        };
-        var url = 'getIcons';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            dataType: 'json',
-            data: data,
-            success: function (data) {
-                var iconsImg = [];
-                for (var i = 0; i < data.icons.length; i++) {
-                    var img = '<img src="../icons/' + data.icons[i] + '" width="30"/>';
-                    iconsImg.append(img);
-                }
-                $('#container-icons').html(iconsImg);
-            }
-        });
-    }
-});
-
-function render() {
-    for (var i = 0; i < data.dreams.length; i++) {
-        var block = '<div class="thumbnail">' +
-            '<img data-holder-rendered="true" src="../img/notImg.jpg" style="height: 200px; display: block;"alt="100%x200">' +
-            '<div class="caption">' +
-            '<div id="container-icons" style="padding-bottom: 5px"></div>' +
-            '<input type="text" class="form-control tags-input" placeholder="Tags string..." value="' + data.dreams[i].tags + '" readonly/>' +
-            '<h4>Толкование</h4>' +
-            '<p></p></div></div>';
-        $('#container-episod').append(block);
-    }
-}
-$('#final').on('click', function () {
-    window.location = 'journal';
-});
-
-

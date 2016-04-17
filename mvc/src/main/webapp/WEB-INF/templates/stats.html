@@ -61,21 +61,39 @@
 </div>
 <div class="row">
     <div class="col-md-offset-2 col-md-7">
-        <div id="container-episod">
-            <div class="thumbnail" style="height: 500px">
-                <img data-holder-rendered="true"
-                     src="../resources/img/notImg.jpg"
-                     style="height: 200px; display: block;"
-                     alt="100%x200">
-                <h4>Толкование</h4>
-                <div id="container-icons" style="padding-bottom: 5px">
-                    <div class="col-md-2"><img src="../resources/icons/alien-head.png" width="30"/></div>
-                    <div class="col-md-2"><p>hjeagrhkjerghjerjlseljge</p></div>
-                </div>
-            </div>
-        </div>
+        <canvas id="g1"></canvas>
+        <canvas id="g2"></canvas>
+        <canvas id="g3"></canvas>
     </div>
 </div>
-<script src="../resources/js/journal-dream.js"></script>
+<script src="../resources/js/Chart.min.js"></script>
+<script>
+    var data = {
+        labels: [
+            "Red",
+            "Green",
+            "Yellow"
+        ],
+        datasets: [
+            {
+                data: [300, 50, 100],
+                backgroundColor: [
+                    "#F7464A",
+                    "#46BFBD",
+                    "#FDB45C"
+                ],
+                hoverBackgroundColor: [
+                    "#FF5A5E",
+                    "#5AD3D1",
+                    "#FFC870"
+                ]
+            }]
+    };
+    var myPieChart = new Chart($('#g1'), {
+        type: 'line',
+        data: data
+    });
+
+</script>
 </body>
 </html>
