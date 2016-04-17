@@ -2,7 +2,6 @@ package org.kedzo.dreamy.services.impl;
 
 import org.kedzo.dreamy.models.Dream;
 import org.kedzo.dreamy.models.DreamType;
-import org.kedzo.dreamy.models.User;
 import org.kedzo.dreamy.services.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,7 +48,7 @@ public class DreamTypeRepository implements CrudRepository<DreamType> {
     public Set<DreamType> getRandDreamType() {
         Random random = new Random();
         Query query = entityManager.instance().createNativeQuery(
-                "SELECT * FROM dream_type ORDER BY rand() LIMIT " + random.nextInt(4),
+                "SELECT * FROM dream_type ORDER BY rand() LIMIT " + random.nextInt(3) + 1,
                 DreamType.class
         );
         List<DreamType> resultList = ((List<DreamType>) query.getResultList());

@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Repository("tagRepository")
 public class TagRepository implements CrudRepository<Tag> {
-    
+
     @Autowired
     DreamyEntityManager entityManager;
 
@@ -45,11 +45,11 @@ public class TagRepository implements CrudRepository<Tag> {
     public Set<Tag> getRandTags() {
         Random random = new Random();
         Query query = entityManager.instance().createNativeQuery(
-                "SELECT * FROM tags ORDER BY rand() LIMIT " + random.nextInt(4),
+                "SELECT * FROM tags ORDER BY rand() LIMIT " + random.nextInt(3) + 1,
                 Tag.class
         );
         List<Tag> resultList = ((List<Tag>) query.getResultList());
         return new HashSet<>(resultList);
     }
-    
+
 }

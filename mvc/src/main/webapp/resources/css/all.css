@@ -1,0 +1,12 @@
+body {
+    background-image: url("../img/background.jpg");
+}
+
+.border {
+    border: 2px solid black;
+    border-radius: 50px 50px 50px 50px;
+}
+
+.nav-bar-left {
+    position: fixed;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/signup.css" rel="stylesheet">
+    <link href="../css/all.css" rel="stylesheet">
+    <title>SignUp</title>
+</head>
+<body>
+<div class="row sign-up">
+    <div class="col-md-offset-4 col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
+            </div>
+            <button type="button" class="btn btn-default" id="signup-btn">Submit</button>
+        </form>
+    </div>
+
+</div>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-offset-4 col-md-4">
+        <div id="error-email" class="alert alert-danger alert-dismissible" role="alert" style="display: none">
+            <button type="button" class="close" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Invalid Email!
+        </div>
+        <div id="error-pwd" class="alert alert-danger alert-dismissible" role="alert" style="display: none">
+            <button type="button" class="close" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Invalid Confirm Password!
+        </div>
+        <div id="error-singup" class="alert alert-danger alert-dismissible" role="alert" style="display: none">
+            <button type="button" class="close" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> Server not respond!
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/signup.js"></script>
+</body>
+</html>
