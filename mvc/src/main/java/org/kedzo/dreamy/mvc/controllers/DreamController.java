@@ -135,9 +135,9 @@ public class DreamController {
         if (dreamId != null) {
             Dream dream = dreamRepository.load(Long.valueOf(dreamId));
 
-            List<Tag> tags = dream.getEpisodes().stream()
+            Set<Tag> tags = dream.getEpisodes().stream()
                     .flatMap(e -> episodeTagsRepository.getTagsByEpisodeId(e.getId()).stream())
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
 
             return tags.stream().map(tag -> {
                 List<String> resp = new ArrayList<>();
