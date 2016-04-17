@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+import org.tartarus.snowball.ext.russianStemmer;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -110,7 +111,16 @@ public class DreamController {
             dreamRepository.update(dream);
         }
 
-        Set<Tag> tags = tagRepository.getTagsByTerms(episodeRequest.getTags());
+        List<String> terms = episodeRequest.getTags()
+                .stream()
+                .map(e -> {
+                    russianStemmer stemmer = new russianStemmer();
+                    stemmer.setCurrent(e.toLowerCase());
+                    stemmer.stem();
+                    return stemmer.getCurrent();
+                }).collect(Collectors.toList());
+
+        Set<Tag> tags = tagRepository.getTagsByTerms(terms);
         tags.forEach(tag -> {
             episodeTagsRepository.insert(episode.getId(), tag.getId());
         });
