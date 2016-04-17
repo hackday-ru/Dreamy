@@ -52,4 +52,11 @@ public class UserRepository implements CrudRepository<User> {
         List<Dream> resultList = (List<Dream>) query.getResultList();
         return new HashSet<>(resultList);
     }
+
+    public Integer getNumberUsers() {
+        Query query = entityManager.instance().createNativeQuery(
+                "SELECT * FROM users", User.class);
+        List<User> users = (List<User>) query.getResultList();
+        return users.size();
+    }
 }

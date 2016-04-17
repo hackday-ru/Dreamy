@@ -1,6 +1,7 @@
 package org.kedzo.dreamy.mvc.controllers;
 
 import org.kedzo.dreamy.models.Dream;
+import org.kedzo.dreamy.models.Episode;
 import org.kedzo.dreamy.models.responce.PopularTagResponce;
 import org.kedzo.dreamy.models.Tag;
 import org.kedzo.dreamy.models.User;
@@ -72,5 +73,26 @@ public class TagController {
         });
         return responces;
 
+    }
+
+    @RequestMapping(value = "/middlingTagForUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Double middlingTagForUser(@RequestParam long userId) {
+        User user = userRepository.load(userId);
+        Set<Dream> dreams = userRepository.getAllDreams(user);
+        Map<Set<Episode>, Integer> result = new HashMap<>();
+        dreams.stream().forEach(dream -> {
+            Set<Episode> episodes = dreamRepository.getAllEpisodes();
+            int quantity = 0;
+            for (Episode episode : episodes) {
+                quantity = quantity + episode.getTags().size();
+            }
+            result.put(episodes, quantity);
+        });
+        double response = 0.0;
+        for (Integer integer : result.values()) {
+            response += integer;
+        }
+        return response / result.size();
     }
 }

@@ -32,4 +32,12 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/numberOfUsers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Integer numberUsers() {
+        return userRepository.getNumberUsers();
+    }
+
+
+
 }
