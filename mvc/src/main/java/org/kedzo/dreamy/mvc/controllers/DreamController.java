@@ -1,5 +1,6 @@
 package org.kedzo.dreamy.mvc.controllers;
 
+import org.apache.commons.lang3.StringUtils;
 import org.kedzo.dreamy.models.Dream;
 import org.kedzo.dreamy.models.Episode;
 import org.kedzo.dreamy.models.Tag;
@@ -25,16 +26,13 @@ import org.tartarus.snowball.ext.russianStemmer;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-/**
- * Created by woodman on 16.04.16.
- */
 
 @Controller
 @Scope(value = WebApplicationContext.SCOPE_SESSION)
@@ -126,6 +124,27 @@ public class DreamController {
         });
 
         return tags.stream().map(Tag::getPcture).collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/interpret", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @ResponseBody
+    public List<List<String>> getInterpretation(HttpServletRequest request) {
+        String dreamId = getCookie(request, "dreamId");
+        if (dreamId != null) {
+            Dream dream = dreamRepository.load(Long.valueOf(dreamId));
+            List<Tag> tags = dream.getEpisodes()
+                    .stream()
+                    .flatMap(episode -> episode.getTags().stream())
+                    .collect(Collectors.toList());
+            return tags.stream().map(tag -> {
+                List<String> resp = new ArrayList<>();
+                resp.add(tag.getPcture());
+                resp.add(tag.getInterpritation());
+                return resp;
+            }).collect(Collectors.toList());
+        }
+
+        return null;
     }
 
     private String getCookie(HttpServletRequest request, String cookieName) {

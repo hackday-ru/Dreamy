@@ -17,9 +17,10 @@ $(document).ready(function () {
 function update() {
     $('.tags-input').keydown(function (e) {
         if (e.keyCode == '32' || e.keyCode == 190) {
+            console.log($(this).val().split(new RegExp('[., ]', 'g')));
             var tags = $(this).val().split(new RegExp('[., ]', 'g'));
             var data = {
-                tags: Array[tags],
+                tags: tags,
                 order: $(this).data('order')
             };
             var url = 'addEpisode';
@@ -34,7 +35,7 @@ function update() {
                     var iconsImg = '';
                     for (var i = 0; i < data.length; i++) {
                         var img = '<img src="../resources/icons/' + data[i] + '" width="30"/>';
-                        iconsImg = iconsImg + img;
+                        iconsImg = img+iconsImg;
                     }
                     $('#container-icons').html(iconsImg);
                 }
