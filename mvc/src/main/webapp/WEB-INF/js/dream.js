@@ -19,7 +19,7 @@ function update() {
         if (e.keyCode == '32' || e.keyCode == 190) {
             var tags = $(this).val().split(new RegExp('[., ]', 'g'));
             var data = {
-                tags: tags,
+                tags: Array[tags],
                 order: $(this).data('order')
             };
             var url = 'addEpisode';
@@ -55,7 +55,13 @@ $('#add-episod').on('click', function () {
 });
 
 $('#final').on('click', function () {
-    window.location = 'journal';
+    window.location = 'journal?id=' + getCookie('dreamId');
 });
 
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
