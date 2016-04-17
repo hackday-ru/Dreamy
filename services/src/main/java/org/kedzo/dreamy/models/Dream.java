@@ -2,6 +2,7 @@ package org.kedzo.dreamy.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -20,7 +21,7 @@ public class Dream implements RepositoryEntity {
     @Column(name = "description")
     private String description;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Episode> episodes;
+    private Set<Episode> episodes = new LinkedHashSet<>();
     @OneToMany(fetch = FetchType.EAGER)
     private Set<DreamType> types;
 
@@ -62,5 +63,9 @@ public class Dream implements RepositoryEntity {
 
     public void setHappy(Set<DreamType> happy) {
         this.types = happy;
+    }
+
+    public void addEpisode(Episode episode) {
+        episodes.add(episode);
     }
 }

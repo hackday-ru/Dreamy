@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url = 'add/dream';
+    var url = 'add';
     var data = {
         date: new Date()
     };
@@ -16,23 +16,25 @@ $(document).ready(function () {
 
 function update() {
     $('.tags-input').keydown(function (e) {
-        var tags = $(this).val().split(new RegExp('[., ]', 'g'));
         if (e.keyCode == '32' || e.keyCode == 190) {
+            var tags = $(this).val().split(new RegExp('[., ]', 'g'));
             var data = {
                 tags: tags,
                 order: $(this).data('order')
             };
-            var url = 'dream/addEpisode';
+            var url = 'addEpisode';
             $.ajax({
                 url: url,
+                contentType: "application/json",
                 type: 'POST',
                 dataType: 'json',
-                data: data,
+                data: JSON.stringify(data),
                 success: function (data) {
-                    var iconsImg = [];
-                    for (var i = 0; i < data.icons.length; i++) {
-                        var img = '<img src="../icons/' + data.icons[i] + '" width="30"/>';
-                        iconsImg.append(img);
+                    console.log(data);
+                    var iconsImg = '';
+                    for (var i = 0; i < data.length; i++) {
+                        var img = '<img src="../resources/icons/' + data[i] + '" width="30"/>';
+                        iconsImg = iconsImg + img;
                     }
                     $('#container-icons').html(iconsImg);
                 }
