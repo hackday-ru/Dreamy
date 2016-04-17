@@ -35,7 +35,7 @@ function update() {
                     var iconsImg = '';
                     for (var i = 0; i < data.length; i++) {
                         var img = '<img src="../resources/icons/' + data[i] + '" width="30"/>';
-                        iconsImg = img+iconsImg;
+                        iconsImg = img + iconsImg;
                     }
                     $('#container-icons').html(iconsImg);
                 }
@@ -56,13 +56,6 @@ $('#add-episod').on('click', function () {
 });
 
 $('#final').on('click', function () {
-    window.location = 'journal?id=' + getCookie('dreamId');
+    window.location = 'journal';
 });
-
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
